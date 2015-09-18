@@ -1,0 +1,27 @@
+{
+  "name": "i18n-helper",
+  "version": "1.0.0",
+  "description": "i18n helper",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gbk/i18n-helper.git"
+  },
+  "keywords": [
+    "i18n",
+    "helper"
+  ],
+  "author": "gbk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gbk/i18n-helper/issues"
+  },
+  "homepage": "https://github.com/gbk/i18n-helper#readme",
+  "devDependencies": {
+    "mocha": "~2.3.2",
+    "should": "~7.1.0"
+  }
+}
