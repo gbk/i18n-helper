@@ -61,7 +61,7 @@ console.log(i18n('key'));
 // => 'key'
 ```
 
-You can override `i18n.keyNotFound` to apply your customized `key not found` handler ( >= 0.1.0 ).
+You can override `i18n.keyNotFound` to apply your customized `key not found` handler ( >= 1.1.0 ).
 
 ```js
 var i18n = i18nHelper({ key1: 'hello', key2: 'world' });
