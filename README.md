@@ -61,6 +61,19 @@ console.log(i18n('key'));
 // => 'key'
 ```
 
+You can override `i18n.keyNotFound` to apply your customized `key not found` handler ( >= 0.1.0 ).
+
+```js
+var i18n = i18nHelper({ key1: 'hello', key2: 'world' });
+
+i18n.keyNotFound = function(key) {
+    return key + ' is not found';
+};
+
+console.log(i18n('key'));
+// => 'key is not found'
+```
+
 ### Template
 
 If the value to the key is a template ( with a string like `{1}` ),
@@ -72,6 +85,12 @@ var i18n = i18nHelper({ greetings: 'Hello {1} ! Welcome to {2} .' });
 console.log(i18n('greetings', 'Jack', 'China'));
 // => 'Hello Jack ! Welcome to China .'
 ```
+
+## Change Log
+
+### 1.1.0
+
+- add `keyNotFound` handler.
 
 ## Links
 

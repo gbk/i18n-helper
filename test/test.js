@@ -2,7 +2,7 @@
 * @Author: caoke
 * @Date:   2015-09-18 14:22:50
 * @Last Modified by:   caoke
-* @Last Modified time: 2015-09-18 16:34:45
+* @Last Modified time: 2015-09-21 17:39:01
 */
 
 var should = require('should');
@@ -22,6 +22,14 @@ describe('find key', function() {
         i18n({})('key').should.eql('key');
 
         i18n({ key1: 'hello' })('key').should.eql('key');
+
+        i18n({ key1: 'hello' })('key').should.eql('key');
+
+        var h = i18n({ key1: 'hello' });
+        h.keyNotFound = function(key) {
+            return '【`' + key + '` is not found!】';
+        };
+        h('key').should.eql('【`key` is not found!】')
     });
 
     it('resource merge', function() {

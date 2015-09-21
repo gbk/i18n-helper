@@ -2,10 +2,13 @@
 * @Author: caoke
 * @Date:   2015-09-18 13:37:01
 * @Last Modified by:   caoke
-* @Last Modified time: 2015-09-18 17:02:04
+* @Last Modified time: 2015-09-21 17:32:07
 */
 
-module.exports = function() {
+module.exports = generateI18nHelper;
+
+// i18n helper generator
+function generateI18nHelper() {
 
     // language resource
     var lang = {};
@@ -21,7 +24,7 @@ module.exports = function() {
         }
     }
 
-    return function() {
+    var i18nHelper = function() {
 
         // split arguments
         var args = toArray(arguments);
@@ -54,11 +57,23 @@ module.exports = function() {
                 return value;
             }
 
-        // key not exists, return key itself
+        // key not exists
         } else {
-            return key;
+            return i18nHelper.keyNotFound(key);
         }
     };
+
+    // key not found handler
+    i18nHelper.keyNotFound = function(key) {
+        return key;
+    };
+
+    return i18nHelper;
+};
+
+// key not found handler
+function keyNotFound(key) {
+    return key;
 };
 
 // arguments to array
