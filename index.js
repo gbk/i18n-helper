@@ -24,7 +24,7 @@ function generateI18nHelper() {
         }
     }
 
-    var i18nHelper = function () {
+    var i18nHelper = function() {
 
         // split arguments
         var args = toArray(arguments);
@@ -41,7 +41,7 @@ function generateI18nHelper() {
     };
 
     // key not found handler
-    i18nHelper.keyNotFound = function (key) {
+    i18nHelper.keyNotFound = function(key) {
         return key;
     };
 
