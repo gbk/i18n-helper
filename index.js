@@ -1,9 +1,9 @@
-/* 
-* @Author: caoke
-* @Date:   2015-09-18 13:37:01
-* @Last Modified by:   caoke
-* @Last Modified time: 2015-09-21 17:32:07
-*/
+/*
+ * @Author: caoke
+ * @Date:   2015-09-18 13:37:01
+ * @Last Modified by: Kuncheng Zhao
+ * @Last Modified time: 2016-01-14 20:14:12
+ */
 
 module.exports = generateI18nHelper;
 
@@ -24,57 +24,48 @@ function generateI18nHelper() {
         }
     }
 
-    var i18nHelper = function() {
+    var i18nHelper = function () {
 
         // split arguments
         var args = toArray(arguments);
 
         // first argument is key
         var key = notNull(args[0]);
+        var value = notNull(lang[key]);
 
-        // key exists in lang pack
-        if (key in lang) {
+        // use key when key-value doesn't exist
+        var result = key in lang ? value : i18nHelper.keyNotFound(key);
 
-            // find value mapping to this key
-            var value = notNull(lang[key]);
-
-            // value maybe a substitute template
-            if (value.indexOf('{') !== -1) {
-
-                // subsititute the template
-                return value.replace(/\{(\d+)\}/mg, function(p, index) {
-
-                    // index in array
-                    if (index in args) {
-                        return args[index];
-                    } else {
-
-                        // fallback is blank string
-                        return '';
-                    }
-                });
-            } else {
-                return value;
-            }
-
-        // key not exists
-        } else {
-            return i18nHelper.keyNotFound(key);
-        }
+        // replace the arguments whatever match is
+        return result.indexOf('{') !== -1 ? replaceWithArgs(result, args) : result;
     };
 
     // key not found handler
-    i18nHelper.keyNotFound = function(key) {
+    i18nHelper.keyNotFound = function (key) {
         return key;
     };
 
     return i18nHelper;
-};
+}
+
+function replaceWithArgs(str, args) {
+    return str.replace(/\{(\d+)\}/mg, function (p, index) {
+
+        // index in array
+        if (index in args) {
+            return args[index];
+        } else {
+
+            // fallback is blank string
+            return '';
+        }
+    });
+}
 
 // key not found handler
 function keyNotFound(key) {
     return key;
-};
+}
 
 // arguments to array
 function toArray(o) {
