@@ -1,8 +1,8 @@
 /*
  * @Author: caoke
  * @Date:   2015-09-18 13:37:01
- * @Last Modified by: Kuncheng Zhao
- * @Last Modified time: 2016-01-14 20:14:12
+ * @Last Modified by:   caoke
+ * @Last Modified time: 2016-01-15 16:51:50
  */
 
 module.exports = generateI18nHelper;
@@ -34,7 +34,7 @@ function generateI18nHelper() {
         var value = notNull(lang[key]);
 
         // use key when key-value doesn't exist
-        var result = key in lang ? value : i18nHelper.keyNotFound(key);
+        var result = key in lang ? value : notNull(i18nHelper.keyNotFound(key));
 
         // replace the arguments whatever match is
         return result.indexOf('{') !== -1 ? replaceWithArgs(result, args) : result;
@@ -48,6 +48,7 @@ function generateI18nHelper() {
     return i18nHelper;
 }
 
+// replace placeholders with arguments
 function replaceWithArgs(str, args) {
     return str.replace(/\{(\d+)\}/mg, function (p, index) {
 

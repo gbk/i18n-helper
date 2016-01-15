@@ -2,7 +2,7 @@
 * @Author: caoke
 * @Date:   2015-09-18 14:22:50
 * @Last Modified by:   caoke
-* @Last Modified time: 2015-09-21 17:39:01
+* @Last Modified time: 2016-01-15 16:54:50
 */
 
 var should = require('should');
@@ -52,6 +52,13 @@ describe('find key', function() {
 });
 
 describe('template', function() {
+
+    it('key is template', function() {
+
+        i18n()('hello {1}').should.eql('hello ');
+
+        i18n()('hello {1}', 'world').should.eql('hello world');
+    });
 
     it('params', function() {
 

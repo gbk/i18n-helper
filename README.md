@@ -88,6 +88,10 @@ console.log(i18n('greetings', 'Jack', 'China'));
 
 ## Change Log
 
+### 1.2.0
+
+- support templating key #1.
+
 ### 1.1.0
 
 - add `keyNotFound` handler.
